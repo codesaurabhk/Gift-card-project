@@ -7,6 +7,9 @@ import { LuCirclePlus } from "react-icons/lu";
 import { IoEyeOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { IoSettingsSharp } from "react-icons/io5";
+import { GoChevronDown, GoChevronLeft, GoChevronRight } from "react-icons/go";
+
 import "./GiftCard.css";
 const GiftCard = () => {
   return (
@@ -16,7 +19,7 @@ const GiftCard = () => {
           <div className="h4">Gift Cards</div>
           <div className="text-secondary">Manage your gift cards</div>
         </div>
-        <div className="d-flex align-items-center gap-3 p-4 mt-3">
+        <div className="d-flex align-items-center gap-1 p-4 mt-3">
           <Button
             className="text-danger"
             variant="light"
@@ -68,11 +71,11 @@ const GiftCard = () => {
 
           <div className="d-flex gap-3">
             <select class="form-select" aria-label="Default select example">
-  <option selected>Status</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
+              <option selected>Status</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
             <select class="form-select" aria-label="Default select example">
               <option> Sort By : Last 7 Days </option>
               <option value="1">One</option>
@@ -86,10 +89,7 @@ const GiftCard = () => {
             <thead className="tableheader">
               <tr>
                 <th scope="col">
-                  <input
-                    type="checkbox"
-                    
-                  />
+                  <input type="checkbox" />
                 </th>
                 <th scope="col">Gift Card</th>
                 <th scope="col">Customer</th>
@@ -99,12 +99,15 @@ const GiftCard = () => {
                 <th scope="col">Balance</th>
                 <th scope="col">Status</th>
                 <th></th>
+                <div className="settings">
+                  <IoSettingsSharp />
+                </div>
               </tr>
             </thead>
             <tbody>
               <tr>
-                 <th scope="col">
-                  <input type="checkbox"/>
+                <th scope="col">
+                  <input type="checkbox" />
                 </th>
                 <td>GF1110</td>
                 <td>Carl Evans</td>
@@ -112,18 +115,59 @@ const GiftCard = () => {
                 <td>24 Jan 2024</td>
                 <td>$200</td>
                 <td>$100</td>
-                <td>Active</td>
                 <td>
-                    <div className="iconsms">
-                        <button><IoEyeOutline /></button>
-                        <button><FiEdit /></button>
-                        <button><RiDeleteBinLine /></button>
-                    </div>
+                  <span className="badge ">• Active</span>
+                </td>
+                <td>
+                  <div className="iconsms">
+                    <button>
+                      <IoEyeOutline />
+                    </button>
+                    <button>
+                      <FiEdit />
+                    </button>
+                    <button>
+                      <RiDeleteBinLine />
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+       
+         <div className="d-flex justify-content-between align-items-center p-3">
+      {/* Row Per Page Section */}
+      <div className="d-flex gap-3 align-items-center">
+        <div>Rows Per Page</div>
+        <select className="form-select" name="rows" id="rows" style={{ width: '80px' }}>
+          <option value="10">10</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <div>Entries</div>
+      </div>
+
+     
+      <div className="d-flex align-items-center gap-3">
+     
+
+        <button className="btn btn-outline-secondary" aria-label="Previous Page">
+          <GoChevronLeft size={20} />
+        </button>
+
+        
+        <div className="text-center downt">
+          <span>1</span>
+        </div>
+
+   
+        <button className="btn " aria-label="Next Page">
+          <GoChevronRight size={20} />
+        </button>
+      </div>
+    </div>
       </div>
     </div>
   );
