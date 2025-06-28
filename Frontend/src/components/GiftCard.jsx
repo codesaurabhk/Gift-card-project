@@ -17,6 +17,13 @@ import "./GiftCard.css";
 
 const GiftCardData = [
   { GiftCard: "GFT1110", customer: "Carl Evans", issuedDate: "24 Dec 2024", expiryDate: "24 Jan 2025", amount: "$200", balance: "$100", Status: "Active" },
+  { GiftCard: "GFT1110", customer: "Carl Evans", issuedDate: "24 Dec 2024", expiryDate: "24 Jan 2025", amount: "$200", balance: "$100", Status: "Active" },
+  { GiftCard: "GFT1110", customer: "Carl Evans", issuedDate: "24 Dec 2024", expiryDate: "24 Jan 2025", amount: "$200", balance: "$100", Status: "Active" },
+  { GiftCard: "GFT1109", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
+  { GiftCard: "GFT1109", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
+  { GiftCard: "GFT1109", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
+  { GiftCard: "GFT1109", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
+  { GiftCard: "GFT1107", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
   { GiftCard: "GFT1109", customer: "Minerva Rameriz", issuedDate: "10 Dec 2024", expiryDate: "10 Jan 2025", amount: "$300", balance: "$200", Status: "Active" },
 ];
 
@@ -76,6 +83,24 @@ const GiftCard = ({ show, handleClose }) => {
     });
   };
 
+
+  const toEditForm = (row) => ({
+    giftCard: row.GiftCard,
+    customer: row.customer,
+    issuedDate: toISO(row.issuedDate),      // "24 Dec 2024" ➜ "2024‑12‑24"
+    expiryDate: toISO(row.expiryDate),
+    amount: Number(row.amount.replace(/\$/g, "")),
+    balance: Number(row.balance.replace(/\$/g, "")),
+    status: row.Status === "Active",
+  });
+
+  const toISO = (prettyDate) => {
+    // 24 Dec 2024 ➜ 2024‑12‑24
+    const [d, mon, y] = prettyDate.split(" ");
+    const m = ("JanFebMarAprMayJunJulAugSepOctNovDec"
+      .indexOf(mon) / 3 + 1).toString().padStart(2, "0");
+    return `${y}-${m}-${d.padStart(2, "0")}`;
+  };
 
   const handleShow = () => setShowModal(true);
   return (
@@ -413,15 +438,7 @@ const GiftCard = ({ show, handleClose }) => {
                       <button>
                         <IoEyeOutline />
                       </button>
-                      <button variant="warning text-white" onClick={() => handleEditOpen({
-                        giftCard: 'GF1110',
-                        customer: 'customer1',
-                        issuedDate: '2024-12-24',
-                        expiryDate: '2025-01-24',
-                        amount: 200,
-                        balance: 100,
-                        status: true
-                      })}>
+                      <button variant="warning text-white" onClick={() => handleEditOpen(toEditForm(item))}>
                         <FiEdit />
                       </button>
                       <button>
