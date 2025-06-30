@@ -30,6 +30,9 @@ const GiftcardSchema = new mongoose.Schema({
         required: true,
     }
 
+},
+{
+    timestamps :true ,
 });
 
 module.exports = mongoose.model("GiftCard", GiftcardSchema);
